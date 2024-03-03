@@ -1,18 +1,16 @@
 "use client"
 
 import {useState} from "react"
-import {useRouter} from "next/navigation"
+import {useRouter, useParams} from "next/navigation"
 import {Redirecting, Portal, FlowAlert} from "@/components"
 import {ROUTE} from "@/constants/service"
 
-type TProps = {
-  sharingCode: string
-}
-
-const Redirection = ({sharingCode}: TProps) => {
+const Redirection = () => {
   const [isAlerting, setIsAlerting] = useState(true)
 
   const router = useRouter()
+
+  const params = useParams()
 
   function closeAlert() {
     setIsAlerting(false)
@@ -26,7 +24,7 @@ const Redirection = ({sharingCode}: TProps) => {
         render={() => (
           <FlowAlert
             isAlerting={isAlerting}
-            content={<>올바른 공유코드가 아닙니다: {sharingCode}</>}
+            content={<>올바른 공유코드가 아닙니다: {params.sharingCode}</>}
             onClose={closeAlert}
           />
         )}

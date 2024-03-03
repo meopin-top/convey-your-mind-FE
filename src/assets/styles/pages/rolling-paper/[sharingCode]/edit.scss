@@ -1,0 +1,200 @@
+@import "../../../common/variables";
+@import "../../../common/colors";
+@import "../../../utility-first";
+
+.rolling-paper-edit {
+  $BOX_COLOR: #d9d9d9;
+
+  flex-direction: column;
+
+  position: relative;
+
+  width: 4000px;
+  height: 4000px;
+
+  font-family: "hanna-11-years", "hanna-11-years fallback";
+
+  background-color: #d9d9d9;
+
+  .type-D {
+    width: 3900px;
+    height: 3900px;
+
+    background-color: #fff;
+  }
+
+  .whom {
+    position: absolute;
+
+    z-index: 99;
+
+    width: 400px;
+    height: 220px;
+
+    font-size: 40px;
+    font-weight: bold;
+
+    background-color: #d9d9d9;
+  }
+
+  .tooltip {
+    $BOX_HEIGHT: 60px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    position: absolute;
+
+    width: 220px;
+    height: $BOX_HEIGHT;
+
+    background-color: $BOX_COLOR;
+
+    &::after {
+      $BORDER_WIDTH: 12px;
+      content: "";
+
+      position: absolute;
+      top: $BOX_HEIGHT;
+      left: 12px;
+
+      border: {
+        top: $BORDER_WIDTH solid $BOX_COLOR;
+        right: $BORDER_WIDTH solid transparent;
+        bottom: $BORDER_WIDTH solid transparent;
+        left: $BORDER_WIDTH solid transparent;
+      }
+    }
+
+    button {
+      font-size: 1em;
+
+      background-color: #fff;
+    }
+  }
+
+  .text-content {
+    position: absolute;
+
+    font-size: 24px;
+    font-family: "hanna-air", "hanna-air fallback";
+
+    background-color: $BOX_COLOR;
+
+    border: 1px dashed #000;
+  }
+
+  #bottom-sheet {
+    .wrapper {
+      .content {
+        height: calc(100% - 34px);
+
+        .header {
+          display: inline-block;
+
+          flex: 0 60px;
+        }
+
+        .to,
+        .from {
+          display: flex;
+          align-items: center;
+        }
+
+        .to {
+          .header {
+            font-size: 24px;
+          }
+        }
+
+        .from {
+          .header {
+            font-size: 20px;
+          }
+
+          .sender {
+            flex-grow: 1;
+          }
+
+          .toggle-wrapper {
+            flex-direction: column;
+
+            .description {
+              font-size: 12px;
+            }
+
+            .switch {
+              position: relative;
+
+              width: 60px;
+              height: 24px;
+
+              background-color: #fff;
+
+              border-radius: 30px;
+              box-shadow: 0 0 16px 3px rgba(0, 0, 0, 0.15);
+              cursor: pointer;
+
+              span {
+                @include fill-light-4;
+                position: absolute;
+                top: 2px;
+                left: 2px;
+
+                width: 20px;
+                height: 20px;
+
+                border-radius: 50%;
+
+                transform: translateX(0);
+                transition: transform 0.2s ease-in, background-color 0.2s linear;
+              }
+            }
+
+            #toggle-image:checked ~ .switch,
+            #toggle-text:checked ~ .switch {
+              span {
+                @include fill-dark-4;
+
+                transform: translateX(36px);
+              }
+            }
+          }
+        }
+
+        .f-center {
+          flex-direction: column;
+
+          height: calc(100% - 100px);
+
+          text-align: center;
+
+          .text {
+            width: 100%;
+            height: 100%;
+          }
+
+          .information {
+            font-family: "hanna-air", "hanna-air fallback";
+            font-size: 13px;
+          }
+
+          .confirm {
+            @include fill-dark-4;
+
+            width: 100%;
+            height: 56px;
+            font-size: 15px;
+            transition: background-color 0.1s linear;
+            cursor: pointer;
+
+            &:disabled {
+              background-color: #d9d9d9;
+            }
+          }
+        }
+      }
+    }
+  }
+}

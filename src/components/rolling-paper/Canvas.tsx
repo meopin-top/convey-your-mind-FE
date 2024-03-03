@@ -1,15 +1,16 @@
-import {useState, useContext, useRef, type MouseEvent} from "react"
+import {useState, useRef, type MouseEvent} from "react"
 import FocusDots from "./FocusDots"
-import Store from "@/store/rolling-paper"
 import useMouseTracker from "@/hooks/use-mouse-tracker"
 import {type TCanvasElement} from "@/@types/rolling-paper"
 
 const Canvas = () => {
   const [shapes, setShapes] = useState<HTMLElement[]>([])
   const [focusedShape, setFocusedShape] = useState<HTMLElement | null>(null)
-  const {drawingMode, resetDrawingMode} = useContext(Store)
   const canvasRef = useRef<HTMLDivElement>(null)
   const {handleMouseDown, handleMouseUp, getCoordinate} = useMouseTracker()
+
+  let drawingMode: TCanvasElement | null = null
+  function resetDrawingMode() {}
 
   function handleCanvasMouseDown(event: MouseEvent<HTMLDivElement>) {
     if (!drawingMode) {

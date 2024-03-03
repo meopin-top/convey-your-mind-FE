@@ -81,7 +81,7 @@ describe("RollingPaperEdit", () => {
             json: () =>
               Promise.resolve({
                 code: ROLLING_PAPER.INVITATION_CODE.QUERY_SUCCESS,
-                data: {id: "1"},
+                data: {id: "1", destination: "", type: ""},
               }),
           }
         } else {
@@ -89,6 +89,7 @@ describe("RollingPaperEdit", () => {
             json: () =>
               Promise.resolve({
                 code: ROLLING_PAPER.INVITATION_CODE.QUERY_FAILURE,
+                data: {},
               }),
           }
         }

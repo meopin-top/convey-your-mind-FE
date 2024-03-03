@@ -10,6 +10,9 @@ const SHARING_CODE = "test"
 jest.mock("next/navigation", () => ({
   __esModule: true,
   useRouter: jest.fn(),
+  useParams: jest.fn(() => ({
+    sharingCode: "test",
+  })),
 }))
 jest.mock("../../../../../components/Redirecting.tsx", () => ({
   __esModule: true,
@@ -23,7 +26,7 @@ jest.mock("../../../../../components/Portal.tsx", () => ({
 describe("Redirection", () => {
   it("Redirecting과 '올바른 공유코드가 아닙니다: ${공유코드}'를 띄운 얼럿이 렌더링된다.", () => {
     // given, when
-    render(<Redirection sharingCode={SHARING_CODE} />)
+    render(<Redirection />)
 
     const redirecting = screen.getByText(REDIRECTING)
     const flowAlert = screen.getByText(
@@ -42,7 +45,7 @@ describe("Redirection", () => {
       push: routerPushMock,
     })
 
-    render(<Redirection sharingCode={SHARING_CODE} />)
+    render(<Redirection />)
 
     const okButton = screen.getByText("확인")
 

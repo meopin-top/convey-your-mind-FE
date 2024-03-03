@@ -21,8 +21,7 @@ export type TRollingPaperType = {
 export type TCanvasElement = "textarea" | "img"
 
 export type TStore = {
-  drawingMode: CanvasElement | null
-  resetDrawingMode: () => void
+  toWhom: string
 }
 
 export type TRollingPaperInformation = {
@@ -34,4 +33,38 @@ export type TRollingPaperInformation = {
   status: keyof typeof ROLLING_PAPER_STATUS
   expiredDatetime: string
   owner: boolean
+}
+
+export type TRollingPaperTextContent = {
+  user_id: string
+  content_id: string
+  content_type: "text"
+  x: number
+  y: number
+  width: number
+  height: number
+  text: string
+}
+
+export type TRollingPaperImageContent = {
+  user_id: string
+  content_id: string
+  content_type: "image"
+  x: number
+  y: number
+  width: number
+  height: number
+  image_url: string
+}
+
+export type TRollingPaperProgressedInformation = {
+  project_id: string
+  user_id: string
+  contents: TRollingPaperContent[]
+}
+
+export type TRollingPaperInProgressingInformation = {
+  project_id: string
+  user_id: string
+  content: TRollingPaperContent
 }
